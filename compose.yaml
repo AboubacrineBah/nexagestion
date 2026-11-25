@@ -1,0 +1,66 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - composer_dependencies:/workspace/vendor
+      - node_dependencies:/workspace/node_modules
+    command:
+      - sh
+      - -lc
+      - |
+        if [ ! -f vendor/autoload.php ]; then
+          composer install --no-interaction
+        fi
+        if [ ! -x node_modules/.bin/vite ]; then
+          npm ci --no-audit --no-fund
+        fi
+        if [ ! -f .env ]; then
+          cp .env.example .env
+          php artisan key:generate
+        fi
+        exec env \
+          APP_ENV=local \
+          APP_DEBUG=true \
+          DB_CONNECTION=mysql \
+          DB_HOST=db \
+          DB_PORT=3306 \
+          DB_DATABASE=nexagestion \
+          DB_USERNAME=nexagestion \
+          DB_PASSWORD=nexagestion-local \
+          php artisan serve --host=0.0.0.0 --port=8000
+    ports:
+      - "${APP_PORT:-8000}:8000"
+      - "${VITE_PORT:-5173}:5173"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: nexagestion
+      MYSQL_USER: nexagestion
+      MYSQL_PASSWORD: nexagestion-local
+      MYSQL_ROOT_PASSWORD: local-root-password
+    ports:
+      - "${DB_FORWARD_PORT:-3307}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping --host=127.0.0.1 --user=$$MYSQL_USER --password=$$MYSQL_PASSWORD --silent",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  composer_dependencies:
+  node_dependencies:
+  mysql_data:

@@ -1,0 +1,16 @@
+{
+  "name": "nexagestion",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [8000, 5173],
+  "portsAttributes": {
+    "8000": {
+      "label": "Laravel"
+    },
+    "5173": {
+      "label": "Vite"
+    }
+  }
+}

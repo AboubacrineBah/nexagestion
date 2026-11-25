@@ -1,0 +1,37 @@
+@import "bootstrap/dist/css/bootstrap.css";
+
+:root { --nexa-navy:#1f3a5f; --nexa-teal:#0f766e; --nexa-amber:#f4b544; --nexa-bg:#f4f6f8; --nexa-ink:#1f2937; }
+body { background:var(--nexa-bg); color:var(--nexa-ink); font-family:Inter,"Source Sans 3",Arial,sans-serif; font-size:.94rem; }
+.app-sidebar { background:var(--nexa-navy); color:#d7e2ed; min-height:100vh; }
+.app-brand { color:#fff; font-weight:800; letter-spacing:-.04em; }
+.app-brand-mark { display:inline-grid; place-items:center; width:2.3rem; height:2.3rem; margin-right:.55rem; border-radius:.7rem; background:var(--nexa-amber); color:var(--nexa-navy); }
+.sidebar-nav .nav-link { color:#c6d3e1; border-radius:.55rem; margin:.12rem 0; }
+.sidebar-nav .nav-link:hover,.sidebar-nav .nav-link.active { color:#fff; background:#ffffff1c; }
+.sidebar-nav .nav-link i { width:1.4rem; display:inline-block; }
+.app-main { min-width:0; }
+.app-topbar { background:#fff; border-bottom:1px solid #e8edf2; }
+.content-wrap { max-width:1480px; margin:auto; padding:1.7rem; }
+.page-heading { color:#172a42; font-weight:750; letter-spacing:-.035em; }
+.card { border-color:#e8edf2; border-radius:.8rem; box-shadow:0 2px 8px #1e334708; }
+.kpi-value { color:#1c2d43; font-size:1.45rem; font-weight:750; }
+.btn-primary { --bs-btn-bg:var(--nexa-teal); --bs-btn-border-color:var(--nexa-teal); --bs-btn-hover-bg:#0b625c; --bs-btn-hover-border-color:#0b625c; }
+.badge-soft { background:#e9f6f2; color:var(--nexa-teal); }
+.table>:not(caption)>*>* { padding:.8rem .9rem; }
+.table thead th { color:#738094; font-size:.73rem; text-transform:uppercase; letter-spacing:.04em; }
+.form-label { font-weight:600; color:#405167; }
+.required::after { content:" *"; color:#c55e51; }
+.line-total { min-width:6.5rem; text-align:right; font-weight:600; }
+.bi { display:inline-block; width:1em; font-family:Arial,sans-serif; font-style:normal; text-align:center; }
+.bi-grid-1x2::before { content:"▦"; }
+.bi-people::before { content:"♙"; }
+.bi-receipt::before,.bi-file-earmark-text::before { content:"▤"; }
+.bi-wallet2::before { content:"▣"; }
+.bi-person-plus::before { content:"♙+"; font-size:.85em; }
+.bi-plus-lg::before { content:"+"; }
+.bi-arrow-right::before,.bi-arrow-right-circle::before { content:"→"; }
+.bi-arrow-left::before { content:"←"; }
+.bi-check2::before { content:"✓"; }
+.bi-pencil::before { content:"✎"; }
+.bi-trash::before { content:"×"; }
+.bi-box-arrow-left::before { content:"⇥"; }
+@media(max-width:767.98px) { .app-sidebar { min-height:auto; } .content-wrap { padding:1rem; } }
